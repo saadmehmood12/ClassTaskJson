@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+package com.example.labtaskjson;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    private ArrayList<Options> ArrayList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ArrayList<Options> list = new ArrayList<>();
+        list.add(new Options("New York Bulls"));
+        list.add(new Options("Los Angles Kings"));
+        list.add(new Options("Golden State Warriors"));
+        list.add(new Options("Huston Rocket"));
+
+        Quiz ObjectQiuz = new Quiz("NBA", 1, "Which one is correct team name in NBA", list, "Huston Rocket");
+        Gson ObjectGson = new Gson();
+        String MyJson = ObjectGson.toJson(ObjectQiuz);
+
+
+
+
+
+
+
+
+package com.example.labtaskjson;
+
+import android.content.Context;
+
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static org.junit.Assert.*;
+
+/**
+ * Instrumented test, which will execute on an Android device.
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
+@RunWith(AndroidJUnit4.class)
+public class ExampleInstrumentedTest {
+    @Test
+    public void useAppContext() {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
+        assertEquals("com.example.labtaskjson", appContext.getPackageName());
+    }
+}
+
+
+
+
+
+
+package com.example.labtaskjson;
+
+public class Options {
+    private String Options;
+
+    public Options(String options) {
+        Options = options;
+    }
+
+
+
+
+
+package com.example.labtaskjson;
+
+import android.app.VoiceInteractor;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+
+public class Quiz {
+
+    private String Sports;
+    private int q;
+    private String Question;
+    private ArrayList<Options> list ;
+    private String answer;
+
+    public Quiz(String sports, int q, String question, ArrayList<Options> list, String answer) {
+        Sports = sports;
+        this.q = q;
+        Question = question;
+        this.list = list;
+        this.answer = answer;
+    }
+}
+
+
